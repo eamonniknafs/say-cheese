@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
 
-export default function Cam() {
+export default function Cam(props) {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -20,11 +20,11 @@ export default function Cam() {
         return <Text>No access to camera</Text>;
     }
     return (
-        <View style={styles.container}>
-            <Camera style={styles.camera} type={type}>
-                <View style={styles.buttonContainer}>
+        <View style={props.styles.container}>
+            <Camera style={props.styles.camera} type={type}>
+                <View style={props.styles.buttonContainer}>
                     <TouchableOpacity
-                        style={styles.button}
+                        style={props.styles.button}
                         onPress={() => {
                             setType(
                                 type === Camera.Constants.Type.back
@@ -32,19 +32,10 @@ export default function Cam() {
                                     : Camera.Constants.Type.back
                             );
                         }}>
-                        <Text style={styles.text}> Flip </Text>
+                        <Text style={props.styles.text}> Flip </Text>
                     </TouchableOpacity>
                 </View>
             </Camera>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
