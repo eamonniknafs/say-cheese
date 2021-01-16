@@ -14,15 +14,26 @@ export default function Cam(props) {
         })();
     }, []);
 
-    function handleFacesDetected(){
-        Alert.alert(
-            "Face Detected!",
-            "Your shit seems to work. Don't get too excited.",
-            [
-                { text: "OK", onPress: () => console.log("OK Pressed") }
-            ],
-            { cancelable: false }
-        );
+    function handleFacesDetected(e){
+        if (e.faces.length === 2){
+            Alert.alert(
+                "Face Detected!",
+                "Your shit seems to work. Don't get too excited.",
+                [
+                    { text: "OK", onPress: () => console.log("OK Pressed") }
+                ],
+                { cancelable: false }
+            );
+        }else { //if the # of faces doesn't match the number the user declared (2 for now)
+            Alert.alert(
+                "No Face Detected!",
+                "Your shit seems to work. Don't get too excited.",
+                [
+                    { text: "OK", onPress: () => console.log("OK Pressed") }
+                ],
+                { cancelable: false }
+            );
+        }
     }
 
     if (hasPermission === null) {
@@ -36,7 +47,7 @@ export default function Cam(props) {
             <Camera
                 style={props.styles.camera}
                 type={type}
-                onFacesDetected={handleFacesDetected}
+                onFacesDetected={(e)=>handleFacesDetected(e)}
                 faceDetectorSettings={{
                     mode: FaceDetector.Constants.Mode.fast,
                     detectLandmarks: FaceDetector.Constants.Landmarks.none,
