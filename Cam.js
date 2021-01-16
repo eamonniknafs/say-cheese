@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Alert, Text, View, TouchableOpacity } from 'react-native';
+import * as FaceDetector from 'expo-face-detector';
 import { Camera } from 'expo-camera';
 
 export default function Cam(props) {
@@ -13,6 +14,17 @@ export default function Cam(props) {
         })();
     }, []);
 
+    function handleFacesDetected(e){
+        Alert.alert(
+            "Face Detected!",
+            e.faces.length + " face detected!",
+            [
+                { text: "OK", onPress: () => console.log("OK Pressed") }
+            ],
+            { cancelable: false }
+        );
+    }
+
     if (hasPermission === null) {
         return <View />;
     }
@@ -21,7 +33,19 @@ export default function Cam(props) {
     }
     return (
         <View style={props.styles.container}>
-            <Camera style={props.styles.camera} type={type}>
+            <Camera
+                style={props.styles.camera}
+                type={type}
+                onFacesDetected={(e)=>handleFacesDetected(e)}
+                faceDetectorSettings={{
+                    mode: FaceDetector.Constants.Mode.precision,
+                    detectLandmarks: FaceDetector.Constants.Landmarks.none,
+                    runClassifications: FaceDetector.Constants.Classifications.none,
+                    minDetectionInterval: 2000,
+                    tracking: true,
+                }}
+            >
+
                 <View style={props.styles.buttonContainer}>
                     <TouchableOpacity
                         style={props.styles.button}
