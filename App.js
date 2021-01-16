@@ -18,33 +18,16 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="HomeScreen">
+          name="Preferences">
           {(props) => <HomeScreen  {...props} styles={styles} />}
         </Stack.Screen>
-        <Stack.Screen name="Cam">
+        <Stack.Screen name="Camera">
           {(props) => <Cam  {...props} styles={styles} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
-
-
-// const MyStack = () => {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator>
-//         <Stack.Screen
-//           name = "Home"
-//           component = {HomeScreen}
-//           options = {{title: 'Welcome'}}
-//           />
-//         <Stack.Screen name = "Camera" component={Cam} />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
 
 const styles = StyleSheet.create({
   container: {
@@ -55,14 +38,20 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    margin: 20,
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    backgroundColor: 'black',
+    borderRadius: 50,
+    alignItems: 'center',
+    maxHeight: '8%',
+    width: '60%',
   },
   button: {
-    flex: 0.1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
+    marginTop: '8%',
+    marginBottom: 'auto',
+    flex: 1,
+    fontSize: 18,
+    color: 'white'
   },
   text: {
     fontSize: 18,
