@@ -14,10 +14,10 @@ export default function Cam(props) {
         })();
     }, []);
 
-    function handleFacesDetected(){
+    function handleFacesDetected(e){
         Alert.alert(
             "Face Detected!",
-            "Your shit seems to work. Don't get too excited.",
+            e.faces.length + " face detected!",
             [
                 { text: "OK", onPress: () => console.log("OK Pressed") }
             ],
@@ -36,9 +36,9 @@ export default function Cam(props) {
             <Camera
                 style={props.styles.camera}
                 type={type}
-                onFacesDetected={handleFacesDetected}
+                onFacesDetected={(e)=>handleFacesDetected(e)}
                 faceDetectorSettings={{
-                    mode: FaceDetector.Constants.Mode.fast,
+                    mode: FaceDetector.Constants.Mode.precision,
                     detectLandmarks: FaceDetector.Constants.Landmarks.none,
                     runClassifications: FaceDetector.Constants.Classifications.none,
                     minDetectionInterval: 2000,
