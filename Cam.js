@@ -41,7 +41,7 @@ export default function Cam(props) {
                     mode: FaceDetector.Constants.Mode.fast,
                     detectLandmarks: FaceDetector.Constants.Landmarks.none,
                     runClassifications: FaceDetector.Constants.Classifications.none,
-                    minDetectionInterval: 100,
+                    minDetectionInterval: 2000,
                     tracking: true,
                 }}
             >
