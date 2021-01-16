@@ -22,7 +22,7 @@ export default function App() {
           component = {HomeScreen}
           />
         <Stack.Screen 
-          name = "Camera" 
+          name = "Cam" 
           component={Cam} 
         />
       </Stack.Navigator>
