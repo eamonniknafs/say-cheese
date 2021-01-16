@@ -22,7 +22,7 @@ export default function App() {
           component={HomeScreen}
           />
         <Stack.Screen name="Cam">
-          {(props) => <Cam  {...props} styles={styles} />}
+          {<Cam styles={styles} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
