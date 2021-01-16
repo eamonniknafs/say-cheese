@@ -18,9 +18,9 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          />
+          name="HomeScreen">
+          {(props) => <HomeScreen  {...props} styles={styles} />}
+        </Stack.Screen>
         <Stack.Screen name="Cam">
           {(props) => <Cam  {...props} styles={styles} />}
         </Stack.Screen>
