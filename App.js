@@ -1,5 +1,3 @@
-import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Cam from "./Cam";
@@ -18,54 +16,86 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="HomeScreen"
-          component={HomeScreen}
-          />
-        <Stack.Screen name="Cam">
-          {(props) => <Cam  {...props} styles={styles} />}
+          name="Preferences">
+          {(props) => <HomeScreen  {...props} preferences={preferences} styles={styles} />}
+        </Stack.Screen>
+        <Stack.Screen name="Camera">
+          {(props) => <Cam  {...props} preferences={preferences} styles={styles} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-
-
-// const MyStack = () => {
-//   return (
-//     <NavigationContainer>
-//       <Stack.Navigator>
-//         <Stack.Screen
-//           name = "Home"
-//           component = {HomeScreen}
-//           options = {{title: 'Welcome'}}
-//           />
-//         <Stack.Screen name = "Camera" component={Cam} />
-//       </Stack.Navigator>
-//     </NavigationContainer>
-//   );
-// }
+let preferences = {
+  number: 0,
+  photos: 0,
+  smile: false,
+  blink: false,
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 30,
+  },
+  switchContainer: {
+    margin: '8%',
+    flexDirection:'row',
+    flexWrap:'wrap',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  numContainer: {
+    marginLeft: '11%',
+    flexDirection:'row',
+    flexWrap:'wrap',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   camera: {
     flex: 1,
   },
+  switch: {
+    marginLeft: 30,
+  },
   buttonContainer: {
     flex: 1,
-    backgroundColor: 'transparent',
-    flexDirection: 'row',
-    margin: 20,
+    marginTop: '10%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    backgroundColor: 'black',
+    borderRadius: 50,
+    alignItems: 'center',
+    maxHeight: '8%',
+    width: '60%',
   },
   button: {
-    flex: 0.1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
+    marginTop: '8%',
+    marginBottom: 'auto',
+    flex: 1,
+    fontSize: 18,
+    color: 'white'
   },
   text: {
     fontSize: 18,
-    color: 'white',
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
+  big: {
+    fontSize: 18,
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  number: {
+    flex: 1,
+    fontSize: 20,
+  },
+  icons: {
+    flex: 1,
+    margin: 10,
+    alignContent: 'flex-end'
+  }
 });
