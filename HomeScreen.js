@@ -28,7 +28,7 @@ export default function HomeScreen(props) {
     }
 
     function removePerson() {
-        if (number > 0) {
+        if (number > 1) {
             setNumber(number - 1)
             props.preferences.number = number;
         }
@@ -40,7 +40,7 @@ export default function HomeScreen(props) {
     }
 
     function removePhoto() {
-        if (photos > 0) {
+        if (photos > 1) {
             setPhotos(photos - 1)
             props.preferences.photos = photos;
         }

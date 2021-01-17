@@ -28,8 +28,8 @@ export default function App() {
 }
 
 let preferences = {
-  number: 0,
-  photos: 0,
+  number: 1,
+  photos: 1,
   smile: false,
   blink: false,
 }
