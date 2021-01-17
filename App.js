@@ -32,6 +32,7 @@ let preferences = {
   photos: 1,
   smile: false,
   blink: false,
+  countDownSeconds: 0 //has to do with the count down
 }
 
 const styles = StyleSheet.create({
