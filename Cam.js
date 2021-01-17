@@ -4,11 +4,31 @@ import * as FaceDetector from 'expo-face-detector';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as  MediaLibrary  from 'expo-media-library'
 import {Camera} from 'expo-camera';
+import { Audio } from 'expo-av';
 
 export default function Cam(props) {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
     const [cameraRef,setCameraRef] = useState(null);
+    //    const [sound, setSound] = React.useState();
+
+//    async function playSound() {
+//     console.log('Loading Sound');
+//     const { sound } = await Audio.Sound.createAsync(
+//        require('./assets/Cheese.m4a')
+//     );
+//     setSound(sound);
+
+//     console.log('Playing Sound');
+//     await sound.playAsync(); }
+
+//   React.useEffect(() => {
+//     return sound
+//       ? () => {
+//           console.log('Unloading Sound');
+//           sound.unloadAsync(); }
+//       : undefined;
+//   }, [sound]);
 
     useEffect(() => {
         (async () => {
@@ -26,7 +46,8 @@ export default function Cam(props) {
     function handleFacesDetected(e){
         if (e.faces.length === props.preferences.number){ //need to take a photo if this is detected
             takePhoto();
-    }else{
+            //    playSound();
+        }else{
         Alert.alert(
             "Face Detected!",
             e.faces.length + " face detected!",
