@@ -29,6 +29,7 @@ export default function App() {
 
 let preferences = {
   number: 0,
+  photos: 0,
   smile: false,
   blink: false,
 }
@@ -39,10 +40,18 @@ const styles = StyleSheet.create({
     margin: 30,
   },
   switchContainer: {
-    margin: '10%',
+    margin: '8%',
     flexDirection:'row',
     flexWrap:'wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  numContainer: {
+    marginLeft: '11%',
+    flexDirection:'row',
+    flexWrap:'wrap',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   camera: {
     flex: 1,
@@ -69,6 +78,12 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   text: {
+    fontSize: 18,
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  big: {
     fontSize: 18,
     color: 'black',
     fontWeight: 'bold',

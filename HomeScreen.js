@@ -7,6 +7,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export default function HomeScreen(props) {
     const [number, setNumber] = useState(props.preferences.number);
+    const [photos, setPhotos] = useState(props.preferences.photos);
     const [isSmileEnabled, setIsSmileEnabled] = useState(props.preferences.smile);
     const [isBlinkEnabled, setIsBlinkEnabled] = useState(props.preferences.blink);
 
@@ -19,33 +20,67 @@ export default function HomeScreen(props) {
         setIsBlinkEnabled(!isBlinkEnabled);
         props.preferences.blink = !props.preferences.blink;
     }
-    function addPerson(){
-        setNumber(number+1)
+
+    function addPerson() {
+        setNumber(number + 1)
         props.preferences.number = number;
+
     }
-    function removePerson(){
-        setNumber(number-1)
-        props.preferences.number = number;
+
+    function removePerson() {
+        if (number > 0) {
+            setNumber(number - 1)
+            props.preferences.number = number;
+        }
+    }
+
+    function addPhoto() {
+        setPhotos(photos + 1)
+        props.preferences.photos = photos;
+    }
+
+    function removePhoto() {
+        if (photos > 0) {
+            setPhotos(photos - 1)
+            props.preferences.photos = photos;
+        }
     }
 
     return (
         <View style={props.styles.container}>
             <Text
                 style={props.styles.text}>
-                How many?
+                How many people?
             </Text>
-            <View style={props.styles.switchContainer}>
+            <View style={props.styles.numContainer}>
                 <Icon
                     name="remove-circle-outline"
                     size={50}
                     style={props.styles.icons}
-                    onPress={removePerson} />
-                <Text style={props.styles.number}>{props.preferences.number}</Text>
+                    onPress={removePerson}/>
+                <Text style={props.styles.number}>{number}</Text>
                 <Icon
                     name="add-circle-outline"
                     size={50}
                     style={props.styles.icons}
-                    onPress={addPerson} />
+                    onPress={addPerson}/>
+            </View>
+            <Text
+                style={props.styles.text}>
+                How many photos?
+            </Text>
+            <View style={props.styles.numContainer}>
+                <Icon
+                    name="remove-circle-outline"
+                    size={50}
+                    style={props.styles.icons}
+                    onPress={removePhoto}/>
+                <Text style={props.styles.photos}>{photos}</Text>
+                <Icon
+                    name="add-circle-outline"
+                    size={50}
+                    style={props.styles.icons}
+                    onPress={addPhoto}/>
             </View>
             <View style={props.styles.switchContainer}>
                 <Text
@@ -82,10 +117,6 @@ export default function HomeScreen(props) {
             >
                 <Text style={props.styles.button}>Say Cheese!</Text>
             </TouchableOpacity>
-            <Text>{props.preferences.number.toString()}</Text>
-            <Text>{props.preferences.smile.toString()}</Text>
-            <Text>{props.preferences.blink.toString()}</Text>
-
         </View>
     );
 }
