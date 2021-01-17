@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import * as  MediaLibrary  from 'expo-media-library'
 import {Camera} from 'expo-camera';
 
-
 export default function Cam(props) {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
