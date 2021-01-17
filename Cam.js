@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import {Alert, Text, View} from 'react-native';
+import {Alert, Text, View, Linking} from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as  MediaLibrary  from 'expo-media-library'
 import {Camera} from 'expo-camera';
+
 
 export default function Cam(props) {
     const [hasPermission, setHasPermission] = useState(null);
@@ -17,6 +18,19 @@ export default function Cam(props) {
         })();
     }, []);
 
+    function openPhotos(){
+        switch(Platform.OS){
+            case "ios":
+                Linking.openURL("photos-redirect://");
+                break;
+            case "android":
+                Linking.openURL("content://media/internal/images/media");
+                break;
+            default:
+                console.log("Could not open gallery app");
+        }
+    }
+
     async function takePhoto (){
         let photo = await cameraRef.takePictureAsync();
         console.log('photo', photo);
@@ -25,7 +39,10 @@ export default function Cam(props) {
 
     function handleFacesDetected(e){
         if (e.faces.length === props.preferences.number){ //need to take a photo if this is detected
-            takePhoto();
+            for (let i = 0; i<props.preferences.photos; i++){
+                takePhoto();
+            }
+            openPhotos();
     }else{
         Alert.alert(
             "Face Detected!",
