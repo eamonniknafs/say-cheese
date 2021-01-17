@@ -31,28 +31,37 @@ export default function Cam(props) {
     }
 
     async function takePhoto(e) {
-        if (props.preferences.smile && props.preferences.blink){
-            for (let i = 0; i<e.faces.length; i++){
-                if (e.faces[i].smilingProbability<.8)
+        let capture = true;
+        if (props.preferences.smile && props.preferences.blink) {
+            for (let i = 0; i < e.faces.length; i++) {
+                if (e.faces[i].smilingProbability < .8) capture = false;
+                if (e.faces[i].leftEyeOpenProbability < .8 && e.faces[i].rightEyeOpenProbability < .8) capture = false;
+            }
+        } else if (props.preferences.smile) {
+            for (let i = 0; i < e.faces.length; i++) {
+                if (e.faces[i].smilingProbability < .8) capture = false;
+            }
+        } else if (props.preferences.blink) {
+            for (let i = 0; i < e.faces.length; i++) {
+                if (e.faces[i].leftEyeOpenProbability < .8 && e.faces[i].rightEyeOpenProbability < .8) capture = false;
             }
         }
-        else if (props.preferences.smile){
-
+        if (capture === true) {
+            let photo = await cameraRef.takePictureAsync();
+            console.log('photo', photo);
+            await MediaLibrary.saveToLibraryAsync(photo.uri); //asks user for access to put into photo library
         }
-        else if (props.preferences.blink){
-
-        }
-        else let photo = await cameraRef.takePictureAsync();
-        console.log('photo', photo);
-        await MediaLibrary.saveToLibraryAsync(photo.uri); //asks user for access to put into photo library
     }
 
     function handleFacesDetected(e) {
         if (e.faces.length === props.preferences.number) { //need to take a photo if this is detected
-            for (let i = 0; i < props.preferences.photos; i++) {
-                takePhoto(e);
+            let i = 0;
+            while (i < props.preferences.photos) {
+                takePhoto(e).then(r => i++);
+                console.log("i: " + i);
             }
-           // openPhotos();
+            // openPhotos();
+
         } else {
             console.log(e.faces.length + " face detected!");
             console.log(props.preferences);
