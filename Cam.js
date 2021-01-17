@@ -58,8 +58,9 @@ export default function Cam(props) {
     function handleFacesDetected(e) {
         if (e.faces.length === props.preferences.number) { //need to take a photo if this is detected
             takePhoto(e).then();
-            if (numPics >= props.preferences.photos){
+            if (numPics >= props.preferences.photos-1){
                 setNumPics(0);
+                props.navigation.navigate('Preferences')
                 openPhotos();
             }
 
