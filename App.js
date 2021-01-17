@@ -31,8 +31,7 @@ export default function App() {
 }
 
 let preferences = {
-  countDownSeconds: countDownSeconds
-
+  countDownSeconds: 0
 }
 
 // const MyStack = () => {

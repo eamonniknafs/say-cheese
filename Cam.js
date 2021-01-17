@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Alert, Text, View, TouchableOpacity } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import { Camera } from 'expo-camera';
-import { MediaLibrary } from 'expo-media-library'
+import * as  MediaLibrary  from 'expo-media-library'
 
 export default function Cam(props) {
     const [hasPermission, setHasPermission] = useState(null);
@@ -28,20 +28,21 @@ export default function Cam(props) {
     // };
    
     function countDown(){
-        props.countDownTimer = 100000;
+        props.preferences.countDownSeconds = 100000;
     }
         
     function cancelCountDown(){
-        clearInterval(props.countDownTimer);
+        clearInterval(props.preferences.countDownSeconds);
         // this.setState({
         // countDownSeconds: this.props.countDownSeconds,
         // countDownStarted: false,
         // });
     }
-
+    
     function handleCountDownTime (){
-        if (props.countDownSeconds > 0){
-        let newSeconds = props.countDownSeconds-1;
+        if (props.preferences.countDownSeconds > 0){
+        let newSeconds = props.preferences.countDownSeconds-1;
+        props.preferences.countDownSeconds = newSeconds;
         } else {
             cancelCountDown();
             takePhoto();
@@ -51,24 +52,14 @@ export default function Cam(props) {
     async function takePhoto (){
         let photo = await cameraRef.takePictureAsync();
         console.log('photo', photo);
+        await MediaLibrary.saveToLibraryAsync(photo.uri); //asks user for access to put into photo library
     }
-    // takePhoto = async () => {
-    //      if (cameraRef)
-    //          const photo = await ref.current.takePictureAsync()
-    //     console.debug(photo)
-    // }
-
-    // takePicture(() => {
-    //     (async () => {
-    //         const {photo} = await Camera.takePictureAsync();
-    //     })();
-    // },[]);
 
     function handleFacesDetected(e){
         
         if (e.faces.length === 1){ //need to take a photo if this is detected
-           // takePhoto();
-            handleCountDownTime();
+           takePhoto();
+            //handleCountDownTime();
             //_takePhoto
             // if (!e.faces.faceDetected && !e.faces.state.countDownStarted){
             //     e.faces.initCountDown();
@@ -135,7 +126,15 @@ export default function Cam(props) {
                         }}>
                         <Text style={props.styles.text}> Flip </Text>
                     </TouchableOpacity>
-                    {/* this is the portion that takes a photo on a button press */}
+                    {/* add button here if you want */}
+                </View>
+
+            </Camera>
+        </View>
+    );
+}
+
+{/* this is the portion that takes a photo on a button press */}
                     {/* <TouchableOpacity style={{alignSelf: 'center'}} onPress={async() => { 
                         if(cameraRef){
                         let photo = await cameraRef.takePictureAsync();
@@ -163,9 +162,3 @@ export default function Cam(props) {
                         </View>
                     </TouchableOpacity> */}
                         {/* end section that takes photo with button */}
-                </View>
-
-            </Camera>
-        </View>
-    );
-}
