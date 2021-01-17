@@ -96,8 +96,8 @@ export default function Cam(props) {
                         }}>
                         <Text style={props.styles.text}> Flip </Text>
                     </TouchableOpacity>
-                    
-                    <TouchableOpacity style={{alignSelf: 'center'}} onPress={async() => {
+                    {/* this is the portion that takes a photo on a button press */}
+                    <TouchableOpacity style={{alignSelf: 'center'}} onPress={async() => { 
                         if(cameraRef){
                         let photo = await cameraRef.takePictureAsync();
                         console.log('photo', photo);
@@ -123,7 +123,7 @@ export default function Cam(props) {
                         </View>
                         </View>
                     </TouchableOpacity>
-
+                        {/* end section that takes photo with button */}
                 </View>
 
             </Camera>
