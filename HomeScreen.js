@@ -1,18 +1,71 @@
 import * as React from 'react';
-import { TouchableOpacity, View, Text } from 'react-native';
+import {TouchableOpacity, View, Text, TextInput, Switch} from 'react-native';
+import {useState} from "react";
+
 
 export default function HomeScreen(props) {
-  return (
-      <View style={props.styles.container}>
-          <TouchableOpacity
-              style={props.styles.buttonContainer}
-              onPress={() => props.navigation.navigate('Camera')}
-          >
-              <Text style={props.styles.button}>Say Cheese!</Text>
-          </TouchableOpacity>
+    const [isSmileEnabled, setIsSmileEnabled] = useState(false);
+    const [isBlinkEnabled, setIsBlinkEnabled] = useState(false);
 
-      </View>
-  );
+    function toggleSmile() {
+        setIsSmileEnabled(!isSmileEnabled);
+        props.preferences.smile = isSmileEnabled;
+    }
+
+    function toggleBlink() {
+        setIsBlinkEnabled(!isBlinkEnabled);
+        props.preferences.blink = isBlinkEnabled;
+    }
+
+    return (
+        <View style={props.styles.container}>
+            <Text
+                style={props.styles.text}>
+                How many?
+            </Text>
+            <TextInput
+                style={props.styles.textField}
+                keyboardType='numeric'
+                value={props.preferences.number}
+            />
+            <View style={props.styles.switchContainer}>
+                <Text
+                    style={props.styles.text}>
+                    Track Smiles
+                </Text>
+                <Switch
+                    style={props.styles.switch}
+                    trackColor={{false: "#767577", true: "#81b0ff"}}
+                    thumbColor={isSmileEnabled ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleSmile}
+                    value={isSmileEnabled}
+                />
+            </View>
+            <View style={props.styles.switchContainer}>
+                <Text
+                    style={props.styles.text}>
+                    Track Blinks
+                </Text>
+                <Switch
+                    style={props.styles.switch}
+
+                    trackColor={{false: "#767577", true: "#81b0ff"}}
+                    thumbColor={isBlinkEnabled ? "#f5dd4b" : "#f4f3f4"}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleBlink}
+                    value={isBlinkEnabled}
+                />
+            </View>
+            <TouchableOpacity
+                style={props.styles.buttonContainer}
+                onPress={() => props.navigation.navigate('Camera')}
+            >
+                <Text style={props.styles.button}>Say Cheese!</Text>
+            </TouchableOpacity>
+
+        </View>
+    );
 }
 
 

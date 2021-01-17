@@ -19,25 +19,42 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen
           name="Preferences">
-          {(props) => <HomeScreen  {...props} styles={styles} />}
+          {(props) => <HomeScreen  {...props} preferences={preferences} styles={styles} />}
         </Stack.Screen>
         <Stack.Screen name="Camera">
-          {(props) => <Cam  {...props} styles={styles} />}
+          {(props) => <Cam  {...props} preferences={preferences} styles={styles} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+const preferences = {
+  number: 0,
+  smile: false,
+  blink: false,
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 30,
+  },
+  switchContainer: {
+    margin: '10%',
+    flexDirection:'row',
+    flexWrap:'wrap',
+    justifyContent: 'center'
   },
   camera: {
     flex: 1,
   },
+  switch: {
+    marginLeft: 30,
+  },
   buttonContainer: {
     flex: 1,
+    marginTop: '10%',
     marginLeft: 'auto',
     marginRight: 'auto',
     backgroundColor: 'black',
@@ -55,6 +72,22 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 18,
-    color: 'white',
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
+  textField: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginLeft: '20%',
+    marginRight: '20%',
+    borderRadius: 8,
+    margin: 30
+  },
+  icons: {
+    flex: 1,
+    margin: 10,
+    alignContent: 'flex-end'
+  }
 });
