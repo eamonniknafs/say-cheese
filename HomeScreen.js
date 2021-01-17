@@ -23,27 +23,29 @@ export default function HomeScreen(props) {
 
     function addPerson() {
         setNumber(number + 1)
-        props.preferences.number = number;
 
     }
 
     function removePerson() {
         if (number > 1) {
             setNumber(number - 1)
-            props.preferences.number = number;
         }
     }
 
     function addPhoto() {
         setPhotos(photos + 1)
-        props.preferences.photos = photos;
     }
 
     function removePhoto() {
         if (photos > 1) {
             setPhotos(photos - 1)
-            props.preferences.photos = photos;
         }
+    }
+
+    function sayCheese(){
+        props.preferences.number = number;
+        props.preferences.photos = photos;
+        props.navigation.navigate('Camera');
     }
 
     return (
@@ -113,7 +115,7 @@ export default function HomeScreen(props) {
             </View>
             <TouchableOpacity
                 style={props.styles.buttonContainer}
-                onPress={() => props.navigation.navigate('Camera')}
+                onPress={() => sayCheese()}
             >
                 <Text style={props.styles.button}>Say Cheese!</Text>
             </TouchableOpacity>
