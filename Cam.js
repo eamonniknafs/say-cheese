@@ -34,16 +34,16 @@ export default function Cam(props) {
         let capture = true;
         if (props.preferences.smile && props.preferences.blink) {
             for (let i = 0; i < e.faces.length; i++) {
-                if (e.faces[i].smilingProbability > .6) capture = false;
-                if (e.faces[i].leftEyeOpenProbability > .6 && e.faces[i].rightEyeOpenProbability > .6) capture = false;
+                if (e.faces[i].smilingProbability < .8) capture = false;
+                if (e.faces[i].leftEyeOpenProbability < .9 && e.faces[i].rightEyeOpenProbability < .9) capture = false;
             }
         } else if (props.preferences.smile) {
             for (let i = 0; i < e.faces.length; i++) {
-                if (e.faces[i].smilingProbability > .6) capture = false;
+                if (e.faces[i].smilingProbability < .8) capture = false;
             }
         } else if (props.preferences.blink) {
             for (let i = 0; i < e.faces.length; i++) {
-                if (e.faces[i].leftEyeOpenProbability > .6 && e.faces[i].rightEyeOpenProbability > .6) capture = false;
+                if (e.faces[i].leftEyeOpenProbability < .9 && e.faces[i].rightEyeOpenProbability < .9) capture = false;
             }
         }
         if (capture === true) {
@@ -57,10 +57,10 @@ export default function Cam(props) {
         if (e.faces.length === props.preferences.number) { //need to take a photo if this is detected
             let i = 0;
             while (i < props.preferences.photos) {
-                takePhoto(e).then(r => i++);
+                takePhoto(e).then(i++);
                 console.log("i: " + i);
             }
-            // openPhotos();
+            openPhotos();
 
         } else {
             console.log(e.faces.length + " face detected!");
