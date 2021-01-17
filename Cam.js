@@ -34,16 +34,16 @@ export default function Cam(props) {
         let capture = true;
         if (props.preferences.smile && props.preferences.blink) {
             for (let i = 0; i < e.faces.length; i++) {
-                if (e.faces[i].smilingProbability < .8) capture = false;
-                if (e.faces[i].leftEyeOpenProbability < .8 && e.faces[i].rightEyeOpenProbability < .8) capture = false;
+                if (e.faces[i].smilingProbability > .6) capture = false;
+                if (e.faces[i].leftEyeOpenProbability > .6 && e.faces[i].rightEyeOpenProbability > .6) capture = false;
             }
         } else if (props.preferences.smile) {
             for (let i = 0; i < e.faces.length; i++) {
-                if (e.faces[i].smilingProbability < .8) capture = false;
+                if (e.faces[i].smilingProbability > .6) capture = false;
             }
         } else if (props.preferences.blink) {
             for (let i = 0; i < e.faces.length; i++) {
-                if (e.faces[i].leftEyeOpenProbability < .8 && e.faces[i].rightEyeOpenProbability < .8) capture = false;
+                if (e.faces[i].leftEyeOpenProbability > .6 && e.faces[i].rightEyeOpenProbability > .6) capture = false;
             }
         }
         if (capture === true) {
@@ -85,8 +85,8 @@ export default function Cam(props) {
                 onFacesDetected={(e) => handleFacesDetected(e)}
                 faceDetectorSettings={{
                     mode: FaceDetector.Constants.Mode.precision,
-                    detectLandmarks: FaceDetector.Constants.Landmarks.none,
-                    runClassifications: FaceDetector.Constants.Classifications.none,
+                    detectLandmarks: FaceDetector.Constants.Landmarks.all,
+                    runClassifications: FaceDetector.Constants.Classifications.all,
                     minDetectionInterval: 2000,
                     tracking: true,
                 }}
