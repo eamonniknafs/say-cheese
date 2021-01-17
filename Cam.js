@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Alert, Text, View, Linking} from 'react-native';
+import {Text, View, Linking} from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import Icon from 'react-native-vector-icons/Ionicons';
 import * as  MediaLibrary from 'expo-media-library'
@@ -9,6 +9,7 @@ export default function Cam(props) {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
     const [cameraRef, setCameraRef] = useState(null);
+    const [numPics, setNumPics] = useState(0);
 
     useEffect(() => {
         (async () => {
@@ -50,17 +51,17 @@ export default function Cam(props) {
             let photo = await cameraRef.takePictureAsync();
             console.log('photo', photo);
             await MediaLibrary.saveToLibraryAsync(photo.uri); //asks user for access to put into photo library
+            setNumPics(numPics + 1);
         }
     }
 
     function handleFacesDetected(e) {
         if (e.faces.length === props.preferences.number) { //need to take a photo if this is detected
-            let i = 0;
-            while (i < props.preferences.photos) {
-                takePhoto(e).then(i++);
-                console.log("i: " + i);
+            takePhoto(e).then();
+            if (numPics >= props.preferences.photos){
+                setNumPics(0);
+                openPhotos();
             }
-            openPhotos();
 
         } else {
             console.log(e.faces.length + " face detected!");

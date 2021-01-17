@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {TouchableOpacity, View, Text, TextInput, Switch} from 'react-native';
 import {useState} from "react";
-import {Camera} from "expo-camera";
 import Icon from "react-native-vector-icons/Ionicons";
 
 
