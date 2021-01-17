@@ -23,13 +23,17 @@ export default function App() {
           />
         <Stack.Screen name="Cam">
           {(props) => <Cam  {...props} styles={styles} />}
+          {/* {(props) => <HomeScreen  {...props} preferences={preferences} styles={styles} />} */}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+let preferences = {
+  countDownSeconds: countDownSeconds
 
+}
 
 // const MyStack = () => {
 //   return (
