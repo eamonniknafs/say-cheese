@@ -9,12 +9,12 @@ export default function HomeScreen(props) {
 
     function toggleSmile() {
         setIsSmileEnabled(!isSmileEnabled);
-        props.preferences.smile = isSmileEnabled;
+        props.preferences.smile = !props.preferences.smile;
     }
 
     function toggleBlink() {
         setIsBlinkEnabled(!isBlinkEnabled);
-        props.preferences.blink = isBlinkEnabled;
+        props.preferences.blink = !props.preferences.blink;
     }
 
     return (
@@ -63,6 +63,8 @@ export default function HomeScreen(props) {
             >
                 <Text style={props.styles.button}>Say Cheese!</Text>
             </TouchableOpacity>
+            <Text>{props.preferences.smile.toString()}</Text>
+            <Text>{props.preferences.blink.toString()}</Text>
 
         </View>
     );
