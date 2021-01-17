@@ -121,6 +121,3 @@ export default function HomeScreen(props) {
         </View>
     );
 }
-
-
-// ... other code from the previous section

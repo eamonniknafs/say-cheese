@@ -36,7 +36,7 @@ export default function Cam(props) {
         if (props.preferences.smile && props.preferences.blink) {
             for (let i = 0; i < e.faces.length; i++) {
                 if (e.faces[i].smilingProbability < .8) capture = false;
-                if (e.faces[i].leftEyeOpenProbability < .9 && e.faces[i].rightEyeOpenProbability < .9) capture = false;
+                if (e.faces[i].leftEyeOpenProbability < .7 && e.faces[i].rightEyeOpenProbability < .7) capture = false;
             }
         } else if (props.preferences.smile) {
             for (let i = 0; i < e.faces.length; i++) {
@@ -44,7 +44,7 @@ export default function Cam(props) {
             }
         } else if (props.preferences.blink) {
             for (let i = 0; i < e.faces.length; i++) {
-                if (e.faces[i].leftEyeOpenProbability < .9 && e.faces[i].rightEyeOpenProbability < .9) capture = false;
+                if (e.faces[i].leftEyeOpenProbability < .7 && e.faces[i].rightEyeOpenProbability < .7) capture = false;
             }
         }
         if (capture === true) {
@@ -58,20 +58,11 @@ export default function Cam(props) {
     function handleFacesDetected(e) {
         if (e.faces.length === props.preferences.number) { //need to take a photo if this is detected
             takePhoto(e).then();
-            if (props.preferences.photos!=1){
-                if (numPics >= props.preferences.photos-1){
+                if (numPics === props.preferences.photos-1){
                     setNumPics(0);
                     props.navigation.navigate('Preferences')
                     openPhotos();
                 }
-            }else{
-                if (numPics == props.preferences.photos){
-                    setNumPics(0);
-                    props.navigation.navigate('Preferences')
-                    openPhotos();
-                }
-            }
-
         } else {
             console.log(e.faces.length + " face detected!");
             console.log(props.preferences);
