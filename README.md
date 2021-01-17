@@ -2,9 +2,9 @@
 Group photos made easy! Remember all those times you've struggled to take a group photo with no one to take it for you? Does your timer take bad photos? No worries, just say cheese!
 
 ## Members
-Eamon Niknafs: Project Lead
-Daniel Shimon: Technical Lead
-Chase Maivald: Specification Lead
+*Eamon Niknafs: Project Lead
+*Daniel Shimon: Technical Lead
+*Chase Maivald: Specification Lead
 
 ## Inspiration
 We have all had bad experiences trying to take photos with friends, or even by ourselves whenever no one is around to take them. We thought we would make a clean and easy way to solve this problem.
