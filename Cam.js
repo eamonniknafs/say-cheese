@@ -16,14 +16,7 @@ export default function Cam(props) {
     }, []);
 
     function handleFacesDetected(e){
-        Alert.alert(
-            "Face Detected!",
-            e.faces.length + " face detected!",
-            [
-                { text: "OK", onPress: () => console.log("OK Pressed") }
-            ],
-            { cancelable: false }
-        );
+
     }
 
     if (hasPermission === null) {

@@ -1,11 +1,14 @@
 import * as React from 'react';
 import {TouchableOpacity, View, Text, TextInput, Switch} from 'react-native';
 import {useState} from "react";
+import {Camera} from "expo-camera";
+import Icon from "react-native-vector-icons/Ionicons";
 
 
 export default function HomeScreen(props) {
-    const [isSmileEnabled, setIsSmileEnabled] = useState(false);
-    const [isBlinkEnabled, setIsBlinkEnabled] = useState(false);
+    const [number, setNumber] = useState(props.preferences.number);
+    const [isSmileEnabled, setIsSmileEnabled] = useState(props.preferences.smile);
+    const [isBlinkEnabled, setIsBlinkEnabled] = useState(props.preferences.blink);
 
     function toggleSmile() {
         setIsSmileEnabled(!isSmileEnabled);
@@ -16,6 +19,14 @@ export default function HomeScreen(props) {
         setIsBlinkEnabled(!isBlinkEnabled);
         props.preferences.blink = !props.preferences.blink;
     }
+    function addPerson(){
+        setNumber(number+1)
+        props.preferences.number = number;
+    }
+    function removePerson(){
+        setNumber(number-1)
+        props.preferences.number = number;
+    }
 
     return (
         <View style={props.styles.container}>
@@ -23,11 +34,19 @@ export default function HomeScreen(props) {
                 style={props.styles.text}>
                 How many?
             </Text>
-            <TextInput
-                style={props.styles.textField}
-                keyboardType='numeric'
-                value={props.preferences.number}
-            />
+            <View style={props.styles.switchContainer}>
+                <Icon
+                    name="remove-circle-outline"
+                    size={50}
+                    style={props.styles.icons}
+                    onPress={removePerson} />
+                <Text style={props.styles.number}>{props.preferences.number}</Text>
+                <Icon
+                    name="add-circle-outline"
+                    size={50}
+                    style={props.styles.icons}
+                    onPress={addPerson} />
+            </View>
             <View style={props.styles.switchContainer}>
                 <Text
                     style={props.styles.text}>
@@ -36,7 +55,7 @@ export default function HomeScreen(props) {
                 <Switch
                     style={props.styles.switch}
                     trackColor={{false: "#767577", true: "#81b0ff"}}
-                    thumbColor={isSmileEnabled ? "#f5dd4b" : "#f4f3f4"}
+                    thumbColor={isSmileEnabled ? "#000000" : "#f4f3f4"}
                     ios_backgroundColor="#3e3e3e"
                     onValueChange={toggleSmile}
                     value={isSmileEnabled}
@@ -51,7 +70,7 @@ export default function HomeScreen(props) {
                     style={props.styles.switch}
 
                     trackColor={{false: "#767577", true: "#81b0ff"}}
-                    thumbColor={isBlinkEnabled ? "#f5dd4b" : "#f4f3f4"}
+                    thumbColor={isBlinkEnabled ? "#000000" : "#f4f3f4"}
                     ios_backgroundColor="#3e3e3e"
                     onValueChange={toggleBlink}
                     value={isBlinkEnabled}
@@ -63,6 +82,7 @@ export default function HomeScreen(props) {
             >
                 <Text style={props.styles.button}>Say Cheese!</Text>
             </TouchableOpacity>
+            <Text>{props.preferences.number.toString()}</Text>
             <Text>{props.preferences.smile.toString()}</Text>
             <Text>{props.preferences.blink.toString()}</Text>
 

@@ -1,5 +1,3 @@
-import 'react-native-gesture-handler';
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Cam from "./Cam";
@@ -76,14 +74,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  textField: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginLeft: '20%',
-    marginRight: '20%',
-    borderRadius: 8,
-    margin: 30
+  number: {
+    flex: 1,
+    fontSize: 20,
   },
   icons: {
     flex: 1,
