@@ -58,7 +58,7 @@ export default function HomeScreen(props) {
                     size={50}
                     style={props.styles.icons}
                     onPress={removePerson}/>
-                <Text style={props.styles.number}>{number}</Text>
+                <Text style={props.styles.big}>{number}</Text>
                 <Icon
                     name="add-circle-outline"
                     size={50}
@@ -75,7 +75,7 @@ export default function HomeScreen(props) {
                     size={50}
                     style={props.styles.icons}
                     onPress={removePhoto}/>
-                <Text style={props.styles.photos}>{photos}</Text>
+                <Text style={props.styles.big}>{photos}</Text>
                 <Icon
                     name="add-circle-outline"
                     size={50}

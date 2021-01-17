@@ -47,11 +47,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   numContainer: {
-    marginLeft: '11%',
     flexDirection:'row',
     flexWrap:'wrap',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: '20%'
   },
   camera: {
     flex: 1,
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    marginTop: '10%',
+    marginTop: '30%',
     marginLeft: 'auto',
     marginRight: 'auto',
     backgroundColor: 'black',
@@ -84,9 +84,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   big: {
-    fontSize: 18,
+    fontSize: 35,
     color: 'black',
-    fontWeight: 'bold',
+    fontWeight: '900',
     textAlign: 'center',
   },
   number: {
@@ -94,8 +94,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   icons: {
-    flex: 1,
     margin: 10,
-    alignContent: 'flex-end'
+
   }
 });
