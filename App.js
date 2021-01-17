@@ -29,7 +29,7 @@ export default function App() {
   );
 }
 
-const preferences = {
+let preferences = {
   number: 0,
   smile: false,
   blink: false,
