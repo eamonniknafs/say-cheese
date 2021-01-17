@@ -3,12 +3,32 @@ import { Alert, Text, View, TouchableOpacity } from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
 import { Camera } from 'expo-camera';
 import * as  MediaLibrary  from 'expo-media-library'
+import { Audio } from 'expo-av';
 
 export default function Cam(props) {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
    ///
    const [cameraRef,setCameraRef] = useState(null);
+//    const [sound, setSound] = React.useState();
+
+//    async function playSound() {
+//     console.log('Loading Sound');
+//     const { sound } = await Audio.Sound.createAsync(
+//        require('./assets/Cheese.m4a')
+//     );
+//     setSound(sound);
+
+//     console.log('Playing Sound');
+//     await sound.playAsync(); }
+
+//   React.useEffect(() => {
+//     return sound
+//       ? () => {
+//           console.log('Unloading Sound');
+//           sound.unloadAsync(); }
+//       : undefined;
+//   }, [sound]);
    
     // const __savePhoto = () => {}
 
@@ -59,6 +79,7 @@ export default function Cam(props) {
         
         if (e.faces.length === 1){ //need to take a photo if this is detected
            takePhoto();
+        //    playSound();
             //handleCountDownTime();
             //_takePhoto
             // if (!e.faces.faceDetected && !e.faces.state.countDownStarted){
