@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Alert, Text, View, TouchableOpacity } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, View} from 'react-native';
 import * as FaceDetector from 'expo-face-detector';
-import { Camera } from 'expo-camera';
+import Icon from 'react-native-vector-icons/Ionicons';
+import {Camera} from 'expo-camera';
 
 export default function Cam(props) {
     const [hasPermission, setHasPermission] = useState(null);
@@ -9,7 +10,7 @@ export default function Cam(props) {
 
     useEffect(() => {
         (async () => {
-            const { status } = await Camera.requestPermissionsAsync();
+            const {status} = await Camera.requestPermissionsAsync();
             setHasPermission(status === 'granted');
         })();
     }, []);
@@ -26,13 +27,13 @@ export default function Cam(props) {
     }
 
     if (hasPermission === null) {
-        return <View />;
+        return <View/>;
     }
     if (hasPermission === false) {
         return <Text>No access to camera</Text>;
     }
     return (
-        <View style={props.styles.container}>
+        <View style={props.styles.camera}>
             <Camera
                 style={props.styles.camera}
                 type={type}
@@ -46,19 +47,17 @@ export default function Cam(props) {
                 }}
             >
 
-                <View style={props.styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={props.styles.button}
+                    <Icon
+                        name="camera-reverse-outline"
+                        size={50}
+                        style={props.styles.icons}
                         onPress={() => {
-                            setType(
-                                type === Camera.Constants.Type.back
-                                    ? Camera.Constants.Type.front
-                                    : Camera.Constants.Type.back
-                            );
-                        }}>
-                        <Text style={props.styles.text}> Flip </Text>
-                    </TouchableOpacity>
-                </View>
+                        setType(
+                            type === Camera.Constants.Type.back
+                                ? Camera.Constants.Type.front
+                                : Camera.Constants.Type.back
+                        );
+                    }} />
             </Camera>
         </View>
     );
