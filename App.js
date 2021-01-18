@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Cam from "./Cam";
+import { StyleSheet } from 'react-native';
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import HomeScreen from './HomeScreen'
+import Cam from "./Cam";
+
 
 const Stack = createStackNavigator();
 
@@ -38,10 +40,10 @@ let preferences = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    margin: 30,
+    margin: vw(8),
   },
   switchContainer: {
-    margin: '8%',
+    margin: vh(3),
     flexDirection:'row',
     flexWrap:'wrap',
     justifyContent: 'center',
@@ -52,27 +54,27 @@ const styles = StyleSheet.create({
     flexWrap:'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: '20%'
+    marginBottom: vh(6)
   },
   camera: {
     flex: 1,
   },
   switch: {
-    marginLeft: 30,
+    marginLeft: vw(6),
   },
   buttonContainer: {
     flex: 1,
-    marginTop: '30%',
+    marginTop: vh(12),
     marginLeft: 'auto',
     marginRight: 'auto',
     backgroundColor: 'black',
     borderRadius: 50,
     alignItems: 'center',
-    maxHeight: '8%',
-    width: '60%',
+    maxHeight: vh(7),
+    width: vw(60),
   },
   button: {
-    marginTop: '8%',
+    marginTop: vh(2.2),
     marginBottom: 'auto',
     flex: 1,
     fontSize: 18,
