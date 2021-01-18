@@ -1,7 +1,18 @@
 # say-cheese
 Group photos made easy! Remember all those times you've struggled to take a group photo with no one to take it for you? Does your timer take bad photos? No worries, just say cheese!
 
-## Members
+## Instructions
+- Clone the repo.
+- Run the following:
+
+        $ yarn
+        $ expo start
+  
+- Install the expo client app, and scan the QR code to run the app in the Expo environment.
+
+*Will be available on the Apple App Store soon. Google Play Store will follow soon after*.
+
+## Developers
 * Eamon Niknafs: Project Lead
 * Daniel Shimon: Technical Lead
 * Chase Maivald: Specification Lead
