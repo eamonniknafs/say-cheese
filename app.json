@@ -17,7 +17,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.eamonniknafs.saycheese"
+      "bundleIdentifier": "com.eamonniknafs.saycheese",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to take photos. No data ever leaves your device.",
+        "NSPhotoLibraryUsageDescription": "This app needs permission to save photos to your gallery."
+      }
     },
     "android": {
       "adaptiveIcon": {
