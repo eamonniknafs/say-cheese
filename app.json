@@ -20,15 +20,16 @@
       "bundleIdentifier": "com.eamonniknafs.saycheese",
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to take photos. No data ever leaves your device.",
+        "NSMicrophoneUsageDescription": "This app does not use your microphone.",
         "NSPhotoLibraryUsageDescription": "This app needs permission to save photos to your gallery."
       }
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.eamonniknafs.saycheese"
     },
-    "web": {
-    }
+    "web": {}
   }
 }
