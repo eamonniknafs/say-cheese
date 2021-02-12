@@ -1,4 +1,4 @@
-# say-cheese
+# Say Cheese!
 Group photos made easy! Remember all those times you've struggled to take a group photo with no one to take it for you? Does your timer take bad photos? No worries, just say cheese!
 
 ## Instructions
