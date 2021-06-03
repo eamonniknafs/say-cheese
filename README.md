@@ -10,7 +10,9 @@ Group photos made easy! Remember all those times you've struggled to take a grou
   
 - Install the expo client app, and scan the QR code to run the app in the Expo environment.
 
-*Will be available on the Apple App Store soon. Google Play Store will follow soon after*.
+
+[Download on the App Store now!](https://apps.apple.com/us/app/say-cheese-group-photos/id1549438711?ign-itsct=apps_box_badge&ign-itscg=30200)
+*Will be available on the Google Play Store soon*.
 
 ## Developers
 * Eamon Niknafs: Project Lead
