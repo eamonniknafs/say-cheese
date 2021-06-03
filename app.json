@@ -2,7 +2,7 @@
   "expo": {
     "name": "say-cheese",
     "slug": "say-cheese",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,14 +17,19 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.eamonniknafs.saycheese"
+      "bundleIdentifier": "com.eamonniknafs.saycheese",
+      "infoPlist": {
+        "NSCameraUsageDescription": "This app uses the camera to take photos. No data ever leaves your device.",
+        "NSMicrophoneUsageDescription": "This app does not use your microphone.",
+        "NSPhotoLibraryUsageDescription": "This app needs permission to save photos to your gallery."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.eamonniknafs.saycheese"
     },
-    "web": {
-    }
+    "web": {}
   }
 }
